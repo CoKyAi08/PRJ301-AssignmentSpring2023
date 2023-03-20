@@ -42,8 +42,8 @@ public class AttendanceReportController extends BaseRoleController {
         req.setAttribute("groups", groups);
 
         AttendanceDBContext attendDB = new AttendanceDBContext();
-        ArrayList<Attendance> attandances = attendDB.getByGroup(gid);
-        req.setAttribute("attendances", attandances);
+        ArrayList<Attendance> attendances = attendDB.getByGroup(gid);
+        req.setAttribute("attendances", attendances);
 
         StudentDBContext studentDB = new StudentDBContext();
         ArrayList<Student> students = studentDB.getByGid(gid);
@@ -54,7 +54,7 @@ public class AttendanceReportController extends BaseRoleController {
         req.setAttribute("sessions", sessions);
 
         int numSes = sessions.size();
-        int numAtt = attandances.size();
+        int numAtt = attendances.size();
         int numStu = students.size();
 
         ArrayList<Float> totals = new ArrayList<>();
@@ -64,9 +64,9 @@ public class AttendanceReportController extends BaseRoleController {
             float total = 0;
             for (int j = 0; j < numSes; j++) {
                 for (int k = 0; k < numAtt; k++) {
-                    if (attandances.get(k).getStudent().getId() == students.get(i).getId()
-                            && attandances.get(k).getSession().getIndex() == sessions.get(j).getIndex()
-                            && !attandances.get(k).isPresent()) {
+                    if (attendances.get(k).getStudent().getId() == students.get(i).getId()
+                            && attendances.get(k).getSession().getIndex() == sessions.get(j).getIndex()
+                            && !attendances.get(k).isPresent()) {
                         total++;
                     }
                 }
@@ -75,7 +75,7 @@ public class AttendanceReportController extends BaseRoleController {
         }
         req.setAttribute("totals", totals);
 
-        req.getRequestDispatcher("../Attendance_Report/report.jsp").forward(req, resp);
+        req.getRequestDispatcher("../view/lecturer/attendancereport.jsp").forward(req, resp);
     }
 
     @Override

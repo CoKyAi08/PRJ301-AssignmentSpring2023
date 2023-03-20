@@ -15,14 +15,15 @@ import model.Student;
  *
  * @author minh0
  */
-public class StudentDBContext extends DBContext<Student>{
-        public ArrayList<Student> getByGid(int gid) {
+public class StudentDBContext extends DBContext<Student> {
+
+    public ArrayList<Student> getByGid(int gid) {
         ArrayList<Student> students = new ArrayList<>();
         try {
-            String sql = "select s.stdid, s.stdname as sname from [Student] s\n" +
-"                    join Student_Group sg on s.stdid=sg.stdid\n" +
-"                    join [Group] g on sg.gid=g.gid\n" +
-"                    where g.gid =?";
+            String sql = "select s.stdid, s.stdname as sname from [Student] s\n"
+                    + "                    join Student_Group sg on s.stdid=sg.stdid\n"
+                    + "                    join [Group] g on sg.gid=g.gid\n"
+                    + "                    where g.gid =?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, gid);
             ResultSet rs = stm.executeQuery();
@@ -62,5 +63,5 @@ public class StudentDBContext extends DBContext<Student>{
     public ArrayList<Student> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

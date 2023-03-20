@@ -235,7 +235,7 @@ public class SessionDBContext extends DBContext<Session> {
     public ArrayList<Session> getByGroup(int gid) {
         ArrayList<Session> sessions = new ArrayList<>();
         try {
-            String sql = "select [index] from [Session] ses \n"
+            String sql = "select ses.[index] from [Session] ses \n"
                     + "join [Group] g on ses.gid=g.gid\n"
                     + "where g.gid=?";
             PreparedStatement stm = connection.prepareStatement(sql);
