@@ -13,9 +13,9 @@
     </head>
     <body>
         <form action="login" method="POST">
-            Username: <input type="text" name="username"/> <br/>
-            Password: <input type="password" name="password"/> <br/>
-            <input type="submit" value="Login" /> 
+            <h1>Username: <input type="text" name="username"/></h1> <br/>
+            <h1>Password: <input type="password" name="password"/></h1>  <br/>
+            <input type="submit" value="Login" />
         </form> 
     </body>
 </html>
