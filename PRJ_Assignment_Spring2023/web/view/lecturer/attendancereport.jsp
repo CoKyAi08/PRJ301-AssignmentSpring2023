@@ -15,12 +15,13 @@
         <a href="../home">Home</a><br/>
         <a href="../logout">Logout</a><br/>
         <form action="attendancerport" method="post">
+            <h3>Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/></h3> <br/>
             <input type="hidden" name="lid" value="${requestScope.lecturer.id}"/>
-            <select name="gid">
-                <c:forEach items="${requestScope.groups}" var="g">
-                    <option value="${g.id}">${g.subject.name}-${g.name}</option>
-                </c:forEach>
-            </select>
+            <h3>Attendance report for: <select name="gid">
+                    <c:forEach items="${requestScope.groups}" var="g">
+                        <option value="${g.id}">${g.subject.name}-${g.name}</option>
+                    </c:forEach>
+                </select></h3>
             <input type="submit" value="View"/>
         </form>
     </body>
