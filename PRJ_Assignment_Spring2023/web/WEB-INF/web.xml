@@ -20,6 +20,14 @@
         <servlet-name>TakeAttendanceController</servlet-name>
         <servlet-class>controller.lecturer.TakeAttendanceController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AttendanceReport</servlet-name>
+        <servlet-class>controller.lecturer.AttendanceReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AttendanceReportController</servlet-name>
+        <servlet-class>controller.lecturer.AttendanceReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>TakeAttendanceController</servlet-name>
         <url-pattern>/lecturer/takeattendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceReport</servlet-name>
+        <url-pattern>/lectuter/attendancereport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceReportController</servlet-name>
+        <url-pattern>/lecturer/attendancereport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
