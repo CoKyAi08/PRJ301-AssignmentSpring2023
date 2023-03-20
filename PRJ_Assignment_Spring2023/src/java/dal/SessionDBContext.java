@@ -170,7 +170,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "		INNER JOIN [Subject] sub ON sub.subid = g.subid\n"
                     + "		INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
                     + "		INNER JOIN [Student] s ON s.stdid = sg.stdid\n"
-                    + "		LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
+                    + "		LEFT JOIN Attendance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
                     + "WHERE ses.sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);

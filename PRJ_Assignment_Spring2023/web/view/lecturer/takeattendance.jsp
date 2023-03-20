@@ -12,6 +12,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Take attendance Page</title>
+        <script> 
+            function takeAttendance()
+            {
+                var a = confirm("are you sure?");
+                if(a)
+                {
+                    window.location.href='takeattendance?id'+${ses.id};
+                }
+            }
+        </script>
     </head>
     <body>
         <a href="../home">Home</a> <br/>
@@ -58,7 +68,7 @@
                 </c:forEach>
 
             </table>
-            <input type="submit" value="Save"/>
+            <input type="submit" onclick="takeAttendance()" value="Save"/>
         </form>
     </body>
 </html>
