@@ -11,11 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Timetable Page</title>
     </head>
     <body>
-        <a href="http://localhost:9999/AssignmentcuaCoKyAi/home">Home</a><br/>
-        <a href="http://localhost:9999/AssignmentcuaCoKyAi/logout">Logout</a><br/>
+        <h1>FPT University Academic Portal</h1>
+        <a href="../home">Home</a><br/>
+        <a href="../logout">Logout</a><br/>
         Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/>
         <form action="timetable" method="GET">
             From: <input type="date" name="from" value="${requestScope.from}"/>
@@ -36,13 +37,13 @@
                         <td>
                             <c:forEach items="${requestScope.sessions}" var="ses">
                                 <c:if test="${helper.compare(ses.date,d) eq 0 and (ses.timeslot.id eq slot.id)}">
-                                    <a href = "takeattandance?id=${ses.id}"> ${ses.group.name}-${ses.group.subject.name}</a>
+                                    <a href = "takeattendance?id=${ses.id}"> ${ses.group.name}-${ses.group.subject.name}</a>
                                     <br/>
-                                    ${ses.room.name}
-                                    <c:if test="${ses.attanded}">
+                                    at ${ses.room.name}
+                                    <c:if test="${ses.attended}">
                                         <a> <br>(Attended) </a>
                                         </c:if>
-                                        <c:if test="${!ses.attanded}">
+                                        <c:if test="${!ses.attended}">
                                         <a> <br>(Not yet) </a>
                                         </c:if>
                                     </c:if>
