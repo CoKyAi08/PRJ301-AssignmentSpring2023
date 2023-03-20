@@ -31,7 +31,7 @@ public class GroupDBContext extends DBContext<Group>{
             while (rs.next()) {
                 Group g = new Group();
                 g.setId(rs.getInt("gid"));
-                g.setName(rs.getString("name"));
+                g.setName(rs.getString("gname"));
 
                 Subject sub = new Subject();
                 sub.setId(rs.getInt("subid"));

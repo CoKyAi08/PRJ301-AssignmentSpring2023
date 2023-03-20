@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Account;
 import model.Group;
+import model.Lecturer;
 
 /**
  *
@@ -23,20 +24,22 @@ public class AttendanceReportController extends BaseRoleController {
 
     @Override
     protected void processPost(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
-        processRequest(req, resp, account);
+        
     }
 
     @Override
     protected void processGet(HttpServletRequest req, HttpServletResponse resp,
             Account account) throws ServletException, IOException {
-        processRequest(req, resp, account);
-    }
-    protected void processRequest(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException{
-        LecturerDBContext ldb = new LecturerDBContext();
-        int lid = ldb.getLecturer(account.getUsername()).getId();
+        int lid = Integer.parseInt(req.getParameter("lid"));
+        
+        LecturerDBContext lecturerDB = new LecturerDBContext();
+        Lecturer lecturer = lecturerDB.get(lid);
+        req.setAttribute("lecturer", lecturer);
+
         GroupDBContext groupDB = new GroupDBContext();
         ArrayList<Group> groups = groupDB.getGroups(lid);
         req.setAttribute("groups", groups);
+        
         req.getRequestDispatcher("../view/lecturer/attendancereport.jsp").forward(req, resp);
     }
 }

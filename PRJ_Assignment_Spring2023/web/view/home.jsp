@@ -18,8 +18,8 @@
             <a href="logout">here</a> 
             to logout.</h1> <br/> 
             <a class="header">${requestScope.account.username}</a>
-            <h2><a href="lecturer/timetable">TimeTable</a> <br/></h2>
-            <h2><a href="lecturer/attendancereport">Attendance Report</a></h2> 
+            <h2><a href="lecturer/timetable?lid=${sessionScope.lecturer.id}">TimeTable</a> <br/></h2>
+            <h2><a href="lecturer/attendancereport?lid=${sessionScope.lecturer.id}">Attendance Report</a></h2> 
         </c:if>
         <c:if test="${sessionScope.account eq null}">
             <h1>You are not logged in yet!</h1><br/>

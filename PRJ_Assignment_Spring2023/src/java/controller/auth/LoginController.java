@@ -5,6 +5,7 @@
 package controller.auth;
 
 import dal.AccountDBContext;
+import dal.LecturerDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +13,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import model.Account;
+import model.Lecturer;
 
 /**
  *
@@ -50,10 +53,13 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         AccountDBContext db = new AccountDBContext();
         Account account = db.get(username, password);
+        LecturerDBContext ldb = new LecturerDBContext();
         if (account == null) {
             response.getWriter().println("login failed!");
         } else {
+            Lecturer lecturers = ldb.getLecturer(username);
             request.getSession().setAttribute("account", account);
+            request.getSession().setAttribute("lecturer", lecturers);
             response.sendRedirect("home");
         }
     }

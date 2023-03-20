@@ -14,12 +14,13 @@
     <body>
         <a href="../home">Home</a><br/>
         <a href="../logout">Logout</a><br/>
-        <form action="attendancereport" method="GET">
-            Group: <select name="gid">
+        <form action="attendancerport" method="post">
+            <input type="hidden" name="lid" value="${requestScope.lecturer.id}"/>
+            <select name="gid">
                 <c:forEach items="${requestScope.groups}" var="g">
-                    <option value="${g.gid}">${g.gname}</option>
+                    <option value="${g.id}">${g.subject.name}-${g.name}</option>
                 </c:forEach>
-            </select> <br/>
+            </select>
             <input type="submit" value="View"/>
         </form>
     </body>
