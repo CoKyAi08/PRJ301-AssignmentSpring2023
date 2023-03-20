@@ -9,6 +9,7 @@ import dal.AttendanceDBContext;
 import dal.GroupDBContext;
 import dal.LecturerDBContext;
 import dal.SessionDBContext;
+import dal.StudentDBContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
