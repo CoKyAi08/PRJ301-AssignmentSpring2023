@@ -51,8 +51,8 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        AccountDBContext db = new AccountDBContext();
-        Account account = db.get(username, password);
+        AccountDBContext adb = new AccountDBContext();
+        Account account = adb.get(username, password);
         LecturerDBContext ldb = new LecturerDBContext();
         if (account == null) {
             response.getWriter().println("login failed!");

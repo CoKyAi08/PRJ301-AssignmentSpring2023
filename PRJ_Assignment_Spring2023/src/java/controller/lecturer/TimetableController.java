@@ -52,8 +52,8 @@ public class TimetableController extends BaseRoleController {
         request.setAttribute("to", to);
         request.setAttribute("dates", DateTimeHelper.getDateList(from, to));
 
-        TimeSlotDBContext slotDB = new TimeSlotDBContext();
-        ArrayList<TimeSlot> slots = slotDB.list();
+        TimeSlotDBContext sdb = new TimeSlotDBContext();
+        ArrayList<TimeSlot> slots = sdb.list();
         request.setAttribute("slots", slots);
 
         SessionDBContext sesDB = new SessionDBContext();
