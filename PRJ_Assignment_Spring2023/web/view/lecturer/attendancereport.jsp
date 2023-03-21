@@ -41,25 +41,20 @@
                         <td>
                             <c:forEach items="${requestScope.attendances}" var="a">
                                 <c:if test="${(a.student.id eq s.id) and (a.session.index eq ses.index)}">
-                                    <c:if test="${a.present}"> 
-                                        x
+                                    <c:if test="${!ses.attended}"> 
+                                        Future
                                     </c:if>
-                                    <c:if test="${!a.present}"> 
+                                    <c:if test="${a.present}"> 
+                                        Present
+                                    </c:if>
+                                    <c:if test="${!a.present && ses.attended}">
+                                        Absent
                                     </c:if>
                                 </c:if>
                             </c:forEach>
                         </td>
                     </c:forEach>
-                    <c:forEach items="${requestScope.totals}" var="total">
-                        <td>
-                        <c:if test="${total > 20}">
-                            <td style="background-color: red">${total}%</td>
-                        </c:if>
-                        <c:if test="${total<=20}">
-                            <td style="background-color: green">${total}%</td>
-                        </c:if>
-                        </td>
-                    </c:forEach>
+                    <td>${requestScope.totals}</td>
                 </tr>
             </c:forEach>
         </table>
