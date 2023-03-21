@@ -50,12 +50,16 @@
                             </c:forEach>
                         </td>
                     </c:forEach>
-                    <c:if test="${total > 20}">
-                        <td style="background-color: red">${total}%</td>
-                    </c:if>
-                    <c:if test="${total<=20}">
-                        <td style="background-color: green">${total}%</td>
-                    </c:if>
+                    <c:forEach items="${requestScope.totals}" var="total">
+                        <td>
+                        <c:if test="${total > 20}">
+                            <td style="background-color: red">${total}%</td>
+                        </c:if>
+                        <c:if test="${total<=20}">
+                            <td style="background-color: green">${total}%</td>
+                        </c:if>
+                        </td>
+                    </c:forEach>
                 </tr>
             </c:forEach>
         </table>

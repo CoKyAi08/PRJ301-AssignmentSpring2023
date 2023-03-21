@@ -20,7 +20,7 @@ public class StudentDBContext extends DBContext<Student> {
     public ArrayList<Student> getByGid(int gid) {
         ArrayList<Student> students = new ArrayList<>();
         try {
-            String sql = "select s.stdid, s.stdname as sname from [Student] s\n"
+            String sql = "select s.stdid, stdname from [Student] s\n"
                     + "                    join Student_Group sg on s.stdid=sg.stdid\n"
                     + "                    join [Group] g on sg.gid=g.gid\n"
                     + "                    where g.gid =?";

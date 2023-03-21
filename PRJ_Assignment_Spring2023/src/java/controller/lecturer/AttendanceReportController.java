@@ -58,7 +58,6 @@ public class AttendanceReportController extends BaseRoleController {
         int numStu = students.size();
 
         ArrayList<Float> totals = new ArrayList<>();
-        //(a.student.id eq s.id) and (a.session.index eq ses.index stu ses att
 
         for (int i = 0; i < numStu; i++) {
             float total = 0;

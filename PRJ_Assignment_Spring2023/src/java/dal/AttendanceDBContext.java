@@ -23,7 +23,7 @@ public class AttendanceDBContext extends DBContext<Attendance> {
     public ArrayList<Attendance> getByGroup(int gid) {
         ArrayList<Attendance> attandances = new ArrayList<>();
         try {
-            String sql = "select a.stdid, s.stdname, ses.[index],a.description, a.present from  Attendance a \n"
+            String sql = "select a.stdid, stdname, [index],description, present from  Attendance a \n"
                     + "                    join Student s on a.stdid=s.stdid\n"
                     + "                    join [Session] ses on a.sesid=ses.sesid\n"
                     + "                    join [Group] g on ses.gid=g.gid\n"
