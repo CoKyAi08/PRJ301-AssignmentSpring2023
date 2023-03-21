@@ -252,4 +252,23 @@ public class SessionDBContext extends DBContext<Session> {
         }
         return sessions;
     }
+    public ArrayList<Session> getToStatistic(int gid) {
+        ArrayList<Session> sessions = new ArrayList<>();
+        try {
+            String sql = "select ses.[index] from [Session] ses \n"
+                    + "join [Group] g on ses.gid=g.gid\n"
+                    + "where g.gid=? and attended=1";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session ses = new Session();
+                ses.setIndex(rs.getInt("index"));
+                sessions.add(ses);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sessions;
+    }
 }

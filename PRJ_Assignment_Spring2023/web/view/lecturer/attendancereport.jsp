@@ -10,6 +10,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Attendance Report Page</title>
+        <style>
+        .table1 {
+            float: left;
+            width: 90%;
+        }
+        .table2 {
+            float: left;
+            width: 10%;
+        }
+        </style>
     </head>
     <body>
         <a href="../home">Home</a><br/>
@@ -24,37 +34,50 @@
                 </select></h3>
             <input type="submit" value="View"/>
         </form>
-        <table border="1px" >
+        <table border="1px" class="table1" >
             <tr>
                 <th>Student ID</th>
                 <th>Full Name</th>
                     <c:forEach items="${requestScope.sessions}" var="ses">
                     <th>Session ${ses.index}</th>
                     </c:forEach>
-                <th>% Absent</th>
             </tr>
             <c:forEach items="${requestScope.students}" var="s">
                 <tr>
                     <td>${s.id}</td>
                     <td>${s.name}</td>
-                    <c:forEach items="${requestScope.sessions}" var="ses">
+                    <c:forEach items="${requestScope.sessions }" var="ses">
                         <td>
                             <c:forEach items="${requestScope.attendances}" var="a">
                                 <c:if test="${(a.student.id eq s.id) and (a.session.index eq ses.index)}">
                                     <c:if test="${!ses.attended}"> 
-                                        Future
+                                        <span style="color: graytext;">Future</span>
                                     </c:if>
                                     <c:if test="${a.present}"> 
-                                        Present
+                                        <span style="color: green;"> Present</span>
                                     </c:if>
                                     <c:if test="${!a.present && ses.attended}">
-                                        Absent
+                                        <span style="color: red;"> Absent</span>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
                         </td>
                     </c:forEach>
-                    <td>${requestScope.totals}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <table border="1px" class="table2">
+            <tr>
+                <th>% Absent</th>
+            </tr>
+            <c:forEach items="${requestScope.totals}" var="total">
+                <tr>
+                    <c:if test="${total > 20}">
+                        <td style="background-color: red">${total}%</td>
+                    </c:if>
+                    <c:if test="${total<=20}">
+                        <td style="background-color: green">${total}%</td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>

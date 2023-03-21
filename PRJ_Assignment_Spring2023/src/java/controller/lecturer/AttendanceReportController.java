@@ -51,26 +51,23 @@ public class AttendanceReportController extends BaseRoleController {
 
         SessionDBContext sessionDB = new SessionDBContext();
         ArrayList<Session> sessions = sessionDB.getByGroup(gid);
-        req.setAttribute("sessions", sessions);
-
-        int numSes = sessions.size();
-        int numAtt = attendances.size();
-        int numStu = students.size();
+        ArrayList<Session> ses = sessionDB.getToStatistic(gid);
+        req.setAttribute("sessions", sessions);        
 
         ArrayList<Float> totals = new ArrayList<>();
 
-        for (int i = 0; i < numStu; i++) {
+        for (int i = 0; i < students.size(); i++) {
             float total = 0;
-            for (int j = 0; j < numSes; j++) {
-                for (int k = 0; k < numAtt; k++) {
+            for (int j = 0; j < ses.size(); j++) {
+                for (int k = 0; k < attendances.size(); k++) {
                     if (attendances.get(k).getStudent().getId() == students.get(i).getId()
-                            && attendances.get(k).getSession().getIndex() == sessions.get(j).getIndex()
+                            && attendances.get(k).getSession().getIndex() == ses.get(j).getIndex()
                             && !attendances.get(k).isPresent()) {
                         total++;
                     }
                 }
             }
-            totals.add(total / numSes * 100);
+            totals.add(total / ses.size() * 100);
         }
         req.setAttribute("totals", totals);
 
